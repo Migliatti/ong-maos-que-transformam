@@ -1,0 +1,30 @@
+REVALIDAÇÃO DA VERSÃO FINAL
+Data local: 2026-09-08T21:53:10
+Serviço: https://validator.w3.org/nu/?out=json
+Método: POST, Content-Type: text/html; charset=utf-8
+Resultado: três documentos, zero erros e zero avisos.
+index.html: {"version": "26.9.7", "messages": []}; SHA-256: 65eb13a04f297dbc3943ca7354542712274fc20d9fc94f84b65dcaac0a1fee86
+projetos.html: {"version": "26.9.7", "messages": []}; SHA-256: 67aa8dbea74e5819440f8398e362e0fdb3d3d766f64dd48d2c6d52ff47c1838d
+cadastro.html: {"version": "26.9.7", "messages": []}; SHA-256: 8c6ee7a7ebb86f7c72cc54d683725f5ea25abfdc12822148c42b84513653b224
+
+Nesta execução, o W3C não apontou erros a corrigir. A troca de radios por select atende ao limite de controles; não foi uma correção solicitada pelo validador.
+O relato abaixo veio do ZIP e foi preservado como histórico, sem reproduzir o suposto erro anterior.
+
+--- REGISTRO ORIGINAL DO ZIP ---
+VALIDAÇÃO HTML - NU HTML CHECKER / W3C
+Data: 08/09/2026
+Versão informada pelo serviço: vnu 26.9.7
+
+Arquivos verificados:
+- index.html: válido, sem erros.
+- projetos.html: válido, sem erros.
+- cadastro.html: válido, sem erros após a correção descrita abaixo.
+
+Correção realizada:
+O validador indicou que autocomplete="street-address" não era permitido no
+input de endereço de linha única. O atributo foi alterado para
+autocomplete="address-line1". Uma nova submissão retornou a mensagem de que o
+documento valida de acordo com os esquemas utilizados.
+
+Endereço do serviço utilizado:
+https://validator.w3.org/nu/

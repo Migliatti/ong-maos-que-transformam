@@ -6,6 +6,7 @@
   <meta name="description" content="Conheça os projetos solidários e as formas de apoiar a ONG Mãos que Transformam.">
   <title>Projetos | ONG Mãos que Transformam</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <script type="module" src="js/navegacao.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
@@ -16,9 +17,22 @@
         <span class="marca-simbolo" aria-hidden="true">MT</span>
         <span>Mãos que Transformam</span>
       </a>
-      <nav aria-label="Navegação principal">
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="navegacao" id="menu-principal" aria-label="Navegação principal">
         <ul class="menu">
           <li><a href="index.html">Início</a></li>
+          <li class="menu-item-submenu">
+            <a href="index.html#quem-somos">Sobre nós <span aria-hidden="true">▾</span></a>
+            <ul class="submenu">
+              <li><a href="index.html#quem-somos">Quem somos</a></li>
+              <li><a href="index.html#frentes-atuacao">Nossas frentes</a></li>
+              <li><a href="index.html#titulo-contato">Contato</a></li>
+            </ul>
+          </li>
           <li><a href="projetos.html" aria-current="page">Projetos</a></li>
           <li><a href="cadastro.html">Seja voluntário</a></li>
         </ul>

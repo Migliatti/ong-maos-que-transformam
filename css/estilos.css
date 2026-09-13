@@ -212,6 +212,47 @@ h3 {
   background: var(--branco-12);
 }
 
+.menu-toggle {
+  display: none;
+}
+
+.menu-item-submenu {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + var(--espaco-2));
+  left: 0;
+  min-width: 210px;
+  margin: 0;
+  padding: var(--espaco-2);
+  visibility: hidden;
+  opacity: 0;
+  list-style: none;
+  background: var(--azul-900);
+  border: 1px solid var(--branco-12);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  pointer-events: none;
+}
+
+.menu-item-submenu:hover .submenu,
+.menu-item-submenu:focus-within .submenu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.submenu a {
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
 .hero {
   overflow: hidden;
   color: var(--branco);
@@ -704,21 +745,96 @@ select:user-invalid {
   }
 
   .barra-navegacao {
-    min-height: auto;
-    align-items: flex-start;
-    flex-direction: column;
+    min-height: 72px;
+    position: relative;
     gap: var(--espaco-3);
-    padding: var(--espaco-4) 0;
+  }
+
+  .menu-toggle {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    padding: 0;
+    color: var(--branco);
+    background: transparent;
+    border: 1px solid var(--branco-45);
+    border-radius: 9px;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    width: 24px;
+    height: 2px;
+    display: block;
+    background: currentColor;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .cabecalho.menu-aberto .menu-toggle span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .cabecalho.menu-aberto .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .cabecalho.menu-aberto .menu-toggle span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .navegacao {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    background: var(--azul-950);
+    border-top: 1px solid var(--branco-12);
+    box-shadow: var(--sombra);
+    transition: max-height 280ms ease, visibility 280ms;
+  }
+
+  .cabecalho.menu-aberto .navegacao {
+    max-height: 560px;
+    visibility: visible;
   }
 
   .menu {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: var(--espaco-1);
+    width: min(100% - 1.5rem, 1120px);
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--espaco-1);
+    margin-inline: auto;
+    padding: var(--espaco-3) 0 var(--espaco-4);
   }
 
   .menu a {
-    white-space: nowrap;
+    white-space: normal;
+  }
+
+  .submenu {
+    position: static;
+    min-width: 0;
+    margin-left: var(--espaco-4);
+    padding: 0 0 0 var(--espaco-3);
+    visibility: visible;
+    opacity: 1;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid var(--verde-500);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .submenu a {
+    color: var(--azul-100);
+    font-size: 0.92rem;
   }
 
   .hero {

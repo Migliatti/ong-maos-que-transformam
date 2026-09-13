@@ -62,6 +62,10 @@
               <img src="imagens/projeto-alimentos.jpg" alt="Voluntários separando alimentos para montar cestas básicas" width="1600" height="1067">
             </picture>
             <div class="cartao-conteudo">
+              <div class="grupo-badges" aria-label="Categorias do projeto">
+                <span class="badge badge-urgente">Prioridade alta</span>
+                <span class="badge badge-ativo">Em andamento</span>
+              </div>
               <p class="etiqueta">Segurança alimentar</p>
               <h3>Mesa para Todos</h3>
               <p>Arrecadamos alimentos não perecíveis, organizamos cestas e realizamos entregas mensais para famílias cadastradas.</p>
@@ -69,6 +73,10 @@
           </article>
           <article class="cartao projeto projeto-textual">
             <div class="cartao-conteudo">
+              <div class="grupo-badges" aria-label="Categorias do projeto">
+                <span class="badge badge-educacao">Educação</span>
+                <span class="badge badge-ativo">Inscrições abertas</span>
+              </div>
               <p class="etiqueta">Educação</p>
               <h3>Aprender Abre Caminhos</h3>
               <p>Voluntários oferecem reforço escolar e oficinas de leitura para crianças e adolescentes no contraturno.</p>
@@ -98,6 +106,40 @@
         </aside>
       </div>
     </section>
+
+    <section class="secao" id="feedback" aria-labelledby="titulo-feedback">
+      <div class="container">
+        <p class="chapeu">Respostas do sistema</p>
+        <h2 id="titulo-feedback">Comunicação clara em cada ação</h2>
+        <p class="introducao-feedback">Os componentes abaixo exemplificam mensagens reutilizáveis para orientar voluntários e doadores.</p>
+
+        <div class="grade-alertas">
+          <div class="alerta alerta-informacao" role="status">
+            <span class="alerta-icone" aria-hidden="true">i</span>
+            <div><strong>Informação</strong><p>As inscrições para a próxima ação encerram-se na sexta-feira.</p></div>
+          </div>
+          <div class="alerta alerta-sucesso" role="status">
+            <span class="alerta-icone" aria-hidden="true">✓</span>
+            <div><strong>Cadastro confirmado</strong><p>Recebemos os seus dados e entraremos em contacto.</p></div>
+          </div>
+          <div class="alerta alerta-atencao" role="alert">
+            <span class="alerta-icone" aria-hidden="true">!</span>
+            <div><strong>Atenção</strong><p>Revise os campos obrigatórios antes de continuar.</p></div>
+          </div>
+        </div>
+
+        <a class="botao botao-primario" href="#notificacao">Exibir notificação</a>
+      </div>
+    </section>
+
+    <aside class="toast" id="notificacao" role="status" aria-labelledby="toast-titulo">
+      <span class="toast-icone" aria-hidden="true">✓</span>
+      <div>
+        <strong id="toast-titulo">Interesse registrado</strong>
+        <p>A equipa da ONG recebeu a sua solicitação.</p>
+      </div>
+      <a class="toast-fechar" href="#feedback" aria-label="Fechar notificação">×</a>
+    </aside>
 
     <section class="secao chamada" aria-labelledby="trabalho-voluntario">
       <div class="container chamada-conteudo">

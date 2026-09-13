@@ -142,6 +142,19 @@ class SiteStructureTests(unittest.TestCase):
             with self.subTest(width=width):
                 self.assertIn(f"@media (max-width: {width}px)", css)
 
+    def test_projects_page_has_semantic_feedback_components(self):
+        parser = parse_page("projetos.html")
+        classes = [attrs.get("class", "") for _, attrs in parser.attributes]
+        roles = [attrs.get("role") for _, attrs in parser.attributes]
+        css = (ROOT / "css" / "estilos.css").read_text(encoding="utf-8")
+
+        self.assertTrue(any("badge" in value.split() for value in classes))
+        self.assertTrue(any("alerta" in value.split() for value in classes))
+        self.assertTrue(any("toast" in value.split() for value in classes))
+        self.assertIn("alert", roles)
+        self.assertIn("status", roles)
+        self.assertIn(".toast:target", css)
+
 
 if __name__ == "__main__":
     unittest.main()

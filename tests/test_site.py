@@ -135,6 +135,13 @@ class SiteStructureTests(unittest.TestCase):
             with self.subTest(selector=selector):
                 self.assertIn(selector, css)
 
+    def test_stylesheet_defines_twelve_column_grid_and_five_breakpoints(self):
+        css = (ROOT / "css" / "estilos.css").read_text(encoding="utf-8")
+        self.assertIn("repeat(12, minmax(0, 1fr))", css)
+        for width in (1200, 1024, 850, 700, 480):
+            with self.subTest(width=width):
+                self.assertIn(f"@media (max-width: {width}px)", css)
+
 
 if __name__ == "__main__":
     unittest.main()

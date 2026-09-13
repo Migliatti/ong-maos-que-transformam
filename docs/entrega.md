@@ -14,7 +14,7 @@
 
 Foram recuperados os nove arquivos ausentes do ZIP. Os arquivos que já existiam eram idênticos aos do pacote e não foram substituídos na extração. Depois foram alterados cadastro.html (participação em select e proteção do envio sem JavaScript), css/estilos.css (select e contraste de textos pequenos em fundos claros), js/mascaras.js (habilitação do envio demonstrativo), tests/test_site.py (limite de controles), README.md e docs/validacao-w3c.txt. Nenhum arquivo original foi removido.
 
-Passaram nove testes Python e seis testes Node. No Microsoft Edge sem interface, as três páginas carregaram em larguras de 390 e 1366 pixels, sem transbordamento horizontal e com imagens carregadas. Foram conferidas as três máscaras, a aceitação do formulário válido, a rejeição de e-mail inválido e a confirmação demonstrativa. Esses testes não substituem uma auditoria completa de acessibilidade.
+Passaram dez testes Python e seis testes Node. No Microsoft Edge sem interface, as três páginas carregaram nas larguras de 390, 480, 700, 850, 1024, 1200 e 1366 pixels, sem transbordamento horizontal e com imagens carregadas. Foram conferidas as três máscaras, a aceitação do formulário válido, a rejeição de e-mail inválido e a confirmação demonstrativa. Esses testes não substituem uma auditoria completa de acessibilidade.
 
 ## Textos para os quatro campos da plataforma
 
@@ -24,7 +24,7 @@ O projeto inclui duas imagens ilustrativas da ONG fictícia: voluntários organi
 
 ### 2. Estrutura organizada de pastas
 
-Na raiz estão index.html, projetos.html, cadastro.html, README.md e .gitignore. A pasta css contém estilos.css; js contém mascaras.js; imagens contém voluntarios.jpg, voluntarios.webp, projeto-alimentos.jpg e projeto-alimentos.webp. A pasta tests contém test_site.py e mascaras.test.mjs. A pasta docs reúne validacao-w3c.txt, as três respostas JSON do validador e entrega.md; docs/superpowers/plans e docs/superpowers/specs preservam os documentos originais de planejamento.
+Na raiz estão index.html, projetos.html, cadastro.html, README.md e .gitignore. A pasta css contém estilos.css; js contém mascaras.js; imagens contém voluntarios.jpg, voluntarios.webp, projeto-alimentos.jpg e projeto-alimentos.webp. A pasta tests contém test_site.py e mascaras.test.mjs, e requirements-dev.txt declara a dependência dos testes Python. A pasta docs reúne validacao-w3c.txt, as três respostas JSON do validador e entrega.md; docs/superpowers/plans e docs/superpowers/specs preservam os documentos originais de planejamento.
 
 ### 3. Código-fonte completo
 
@@ -71,4 +71,5 @@ js/mascaras.js
 projetos.html
 tests/mascaras.test.mjs
 tests/test_site.py
+requirements-dev.txt
 ```

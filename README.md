@@ -13,7 +13,7 @@ Projeto acadêmico desenvolvido para a disciplina **Desenvolvimento FrontEnd - E
 - HTML5 semântico com `header`, `nav`, `main`, `section`, `article`, `form` e `footer`.
 - Hierarquia coerente de títulos e navegação acessível.
 - Imagens informativas com texto alternativo nos formatos JPEG e WebP.
-- Layout responsivo para computadores e dispositivos móveis.
+- Layout responsivo baseado em grid de 12 colunas, com breakpoints em 1200, 1024, 850, 700 e 480 pixels.
 - Formulário organizado com `fieldset`, `legend` e `label`.
 - Dez controles de cadastro, respeitando o limite de no máximo dez campos.
 - Validações nativas com `required`, `pattern`, `maxlength` e tipos adequados.
@@ -38,6 +38,7 @@ ong-maos-que-transformam/
 ├── tests/
 │   ├── test_site.py
 │   └── mascaras.test.mjs
+├── requirements-dev.txt
 └── docs/
     └── validacao-w3c.txt
 ```
@@ -54,10 +55,15 @@ Depois acesse `http://localhost:8000`.
 
 ## Testes
 
+Instale a dependência dos testes Python e execute as duas suítes:
+
 ```bash
+python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 node --test tests/mascaras.test.mjs
 ```
+
+O estado atual possui 10 testes Python e 6 testes JavaScript.
 
 ## Validação HTML
 
@@ -70,7 +76,7 @@ Projeto acadêmico de site semântico para uma ONG, desenvolvido com HTML5, CSS 
 
 ## Dependências dos testes
 
-Python 3 com Pillow (`python -m pip install Pillow`) e Node.js 24 ou superior. O site usa somente HTML, CSS e JavaScript.
+Python 3 com Pillow e Node.js 22 ou superior. As versões Python ficam declaradas em `requirements-dev.txt`. O site em si não possui dependências e usa somente HTML, CSS e JavaScript.
 
 ## Entrega e decisões
 

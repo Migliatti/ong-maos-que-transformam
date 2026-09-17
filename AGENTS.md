@@ -15,15 +15,15 @@
 - Evite dependências e arquivos de configuração novos sem necessidade concreta. Mantenha o projeto utilizável como site estático.
 - Trate `docs/entrega.md`, `docs/validacao-w3c.txt` e `docs/superpowers/` como registros históricos; verifique novamente o código atual antes de reutilizar suas afirmações.
 
-## Git e worktrees
+## Git
 
 - `main` preserva o Projeto Prático 1; `projeto-pratico-2` preserva o Projeto Prático 2; `projeto-pratico-3` é a branch de trabalho atual.
-- Para tarefas do Projeto 3, trabalhe na worktree de `projeto-pratico-3`. Verifique `git branch --show-current` e `git status --short --branch` antes de editar.
+- Para tarefas do Projeto 3, trabalhe no checkout da branch `projeto-pratico-3`. Verifique `git branch --show-current` e `git status --short --branch` antes de editar.
 - Faça commits locais pequenos por atividade relevante, usando Conventional Commits em português, depois de verificar status, diff e testes.
 - Não faça push, merge, exclusão de branch ou mudança remota sem pedido explícito do estudante.
 
 ## Verificação
 
 - Execute `python -m unittest discover -s tests -v` e `node --test tests/mascaras.test.mjs` após mudanças que afetem o site ou seus testes.
-- Execute `git diff --check` antes do commit. Para caminhos de páginas ou recursos, confira também o carregamento por um servidor iniciado na raiz da worktree.
+- Execute `git diff --check` antes do commit. Para caminhos de páginas ou recursos, confira também o carregamento por um servidor iniciado na raiz do projeto.
 - Se `python` não estiver no PATH, localize um interpretador Python disponível antes de concluir que os testes não podem rodar.

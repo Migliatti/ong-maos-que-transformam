@@ -2,7 +2,7 @@
 
 Projeto acadêmico iniciado na disciplina **Desenvolvimento FrontEnd - Experiência Prática 1** e ampliado nos Projetos Práticos 2 e 3. O site representa uma ONG fictícia e demonstra estrutura semântica em HTML5, acessibilidade, responsividade e validação de formulários.
 
-As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Projeto 3 é desenvolvido na branch `projeto-pratico-3` em uma worktree; as branches `main` e `projeto-pratico-2` preservam as entregas anteriores.
+As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Projeto 3 é desenvolvido na branch `projeto-pratico-3`; as branches `main` e `projeto-pratico-2` preservam as entregas anteriores.
 
 ## Páginas
 

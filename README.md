@@ -1,12 +1,14 @@
 # ONG Mãos que Transformam
 
-Projeto acadêmico desenvolvido para a disciplina **Desenvolvimento FrontEnd - Experiência Prática 1**. O site representa uma ONG fictícia e demonstra estrutura semântica em HTML5, acessibilidade, responsividade e validação de formulários.
+Projeto acadêmico iniciado na disciplina **Desenvolvimento FrontEnd - Experiência Prática 1** e ampliado nos Projetos Práticos 2 e 3. O site representa uma ONG fictícia e demonstra estrutura semântica em HTML5, acessibilidade, responsividade e validação de formulários.
+
+As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Projeto 3 é desenvolvido na branch `projeto-pratico-3` em uma worktree; as branches `main` e `projeto-pratico-2` preservam as entregas anteriores.
 
 ## Páginas
 
-- `index.html`: apresentação institucional, áreas de atuação e contato.
-- `projetos.html`: projetos sociais, orientações para doação e voluntariado.
-- `cadastro.html`: formulário completo para futuros colaboradores.
+- `html/index.html`: apresentação institucional, áreas de atuação e contato.
+- `html/projetos.html`: projetos sociais, orientações para doação e voluntariado.
+- `html/cadastro.html`: formulário completo para futuros colaboradores.
 
 ## Funcionalidades
 
@@ -23,13 +25,17 @@ Projeto acadêmico desenvolvido para a disciplina **Desenvolvimento FrontEnd - E
 
 ```text
 ong-maos-que-transformam/
+├── AGENTS.md
 ├── index.html
-├── projetos.html
-├── cadastro.html
+├── html/
+│   ├── index.html
+│   ├── projetos.html
+│   └── cadastro.html
 ├── css/
 │   └── estilos.css
 ├── js/
-│   └── mascaras.js
+│   ├── mascaras.js
+│   └── navegacao.js
 ├── imagens/
 │   ├── voluntarios.jpg
 │   ├── voluntarios.webp
@@ -51,7 +57,7 @@ O site não exige bibliotecas no navegador. Use um servidor local para carregar 
 python -m http.server 8000
 ```
 
-Depois acesse `http://localhost:8000`.
+Depois acesse `http://localhost:8000`. O `index.html` da raiz encaminha para `html/index.html`.
 
 ## Testes
 
@@ -63,7 +69,7 @@ python -m unittest discover -s tests -v
 node --test tests/mascaras.test.mjs
 ```
 
-O estado atual possui 10 testes Python e 6 testes JavaScript.
+O estado atual possui 13 testes Python e 6 testes JavaScript.
 
 ## Validação HTML
 

@@ -6,7 +6,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ("index.html", "projetos.html", "cadastro.html")
+PAGES = ("html/index.html", "html/projetos.html", "html/cadastro.html")
 
 
 class DocumentParser(HTMLParser):
@@ -27,6 +27,11 @@ def parse_page(filename):
 
 
 class SiteStructureTests(unittest.TestCase):
+    def test_root_entry_points_to_html_index(self):
+        entry = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('url=html/index.html', entry)
+        self.assertIn('href="html/index.html"', entry)
+
     def test_required_pages_exist(self):
         for filename in PAGES:
             with self.subTest(filename=filename):
@@ -42,33 +47,44 @@ class SiteStructureTests(unittest.TestCase):
                 for tag in ("header", "nav", "main", "footer"):
                     self.assertIn(tag, parser.tags)
                 styles = [attrs.get("href") for tag, attrs in parser.attributes if tag == "link"]
-                self.assertIn("css/estilos.css", styles)
+                self.assertIn("../css/estilos.css", styles)
 
     def test_navigation_links_all_pages(self):
-        expected = set(PAGES)
+        expected = {"index.html", "projetos.html", "cadastro.html"}
         for filename in PAGES:
             with self.subTest(filename=filename):
                 parser = parse_page(filename)
                 links = {attrs.get("href") for tag, attrs in parser.attributes if tag == "a"}
                 self.assertTrue(expected.issubset(links))
 
+    def test_local_assets_resolve_from_each_html_page(self):
+        for filename in PAGES:
+            with self.subTest(filename=filename):
+                parser = parse_page(filename)
+                page_dir = (ROOT / filename).parent
+                for tag, attrs in parser.attributes:
+                    for key in ("src", "srcset"):
+                        value = attrs.get(key, "")
+                        if value.startswith("../"):
+                            self.assertTrue((page_dir / value).is_file(), f"{filename}: {value}")
+
     def test_index_has_accessible_responsive_image(self):
-        parser = parse_page("index.html")
+        parser = parse_page("html/index.html")
         self.assertIn("picture", parser.tags)
         sources = [attrs.get("srcset") for tag, attrs in parser.attributes if tag == "source"]
         images = [attrs for tag, attrs in parser.attributes if tag == "img"]
-        self.assertIn("imagens/voluntarios.webp", sources)
-        self.assertTrue(any(image.get("src") == "imagens/voluntarios.jpg" for image in images))
+        self.assertIn("../imagens/voluntarios.webp", sources)
+        self.assertTrue(any(image.get("src") == "../imagens/voluntarios.jpg" for image in images))
         self.assertTrue(all(image.get("alt", "").strip() for image in images))
 
     def test_projects_are_independent_articles(self):
-        parser = parse_page("projetos.html")
+        parser = parse_page("html/projetos.html")
         self.assertGreaterEqual(parser.tags.count("section"), 3)
         self.assertGreaterEqual(parser.tags.count("article"), 2)
         self.assertIn("picture", parser.tags)
 
     def test_form_has_four_groups_and_ten_conceptual_fields(self):
-        parser = parse_page("cadastro.html")
+        parser = parse_page("html/cadastro.html")
         self.assertEqual(parser.tags.count("fieldset"), 4)
         controls = [
             attrs for tag, attrs in parser.attributes
@@ -84,7 +100,7 @@ class SiteStructureTests(unittest.TestCase):
         )
 
     def test_strict_fields_use_expected_native_validation(self):
-        parser = parse_page("cadastro.html")
+        parser = parse_page("html/cadastro.html")
         inputs = {
             attrs.get("id"): attrs
             for tag, attrs in parser.attributes
@@ -143,7 +159,7 @@ class SiteStructureTests(unittest.TestCase):
                 self.assertIn(f"@media (max-width: {width}px)", css)
 
     def test_projects_page_has_semantic_feedback_components(self):
-        parser = parse_page("projetos.html")
+        parser = parse_page("html/projetos.html")
         classes = [attrs.get("class", "") for _, attrs in parser.attributes]
         roles = [attrs.get("role") for _, attrs in parser.attributes]
         css = (ROOT / "css" / "estilos.css").read_text(encoding="utf-8")

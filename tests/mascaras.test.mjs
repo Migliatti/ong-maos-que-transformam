@@ -2,9 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  dataNascimentoEValida,
   mascararCEP,
   mascararCPF,
   mascararTelefone,
+  validarCPF,
 } from "../js/mascaras.js";
 
 
@@ -36,4 +38,19 @@ test("formata CEP, preserva zero inicial e corta excedentes", () => {
 test("mantém a máscara de CEP progressiva durante a digitação", () => {
   assert.equal(mascararCEP("0123"), "0123");
   assert.equal(mascararCEP("012345"), "01234-5");
+});
+
+test("aceita CPF com dígitos verificadores corretos", () => {
+  assert.equal(validarCPF("529.982.247-25"), true);
+});
+
+test("rejeita CPF com dígito verificador incorreto ou números repetidos", () => {
+  assert.equal(validarCPF("529.982.247-24"), false);
+  assert.equal(validarCPF("111.111.111-11"), false);
+});
+
+test("rejeita data de nascimento futura", () => {
+  const hoje = new Date(2026, 8, 16);
+  assert.equal(dataNascimentoEValida("2026-09-17", hoje), false);
+  assert.equal(dataNascimentoEValida("2000-01-01", hoje), true);
 });

@@ -900,6 +900,28 @@ select:user-invalid {
   font-weight: 800;
 }
 
+.campo-invalido :is(input, select) {
+  border-color: var(--vermelho-700);
+  box-shadow: 0 0 0 3px var(--vermelho-700-18);
+}
+
+.campo-valido :is(input, select) {
+  border-color: var(--verde-700);
+}
+
+.campo-invalido label::after {
+  content: " — preenchimento inválido";
+  color: var(--vermelho-700);
+  font-weight: 700;
+}
+
+.mensagem-erro-campo {
+  margin: var(--espaco-2) 0 0;
+  color: var(--vermelho-700);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 /* 1200px: notebooks e desktops com area util reduzida. */
 @media (max-width: 1200px) {
   .container {

@@ -119,12 +119,14 @@
           <fieldset>
             <legend>Participação</legend>
             <!-- Um único controle mantém o cadastro dentro do limite de dez campos. -->
-            <label for="participacao">Como você deseja colaborar? *</label>
-            <select id="participacao" name="participacao" required>
-              <option value="">Selecione uma opção</option>
-              <option value="voluntariado">Trabalho voluntário</option>
-              <option value="doacao">Contribuição financeira</option>
-            </select>
+            <div class="campo">
+              <label for="participacao">Como você deseja colaborar? *</label>
+              <select id="participacao" name="participacao" required>
+                <option value="">Selecione uma opção</option>
+                <option value="voluntariado">Trabalho voluntário</option>
+                <option value="doacao">Contribuição financeira</option>
+              </select>
+            </div>
           </fieldset>
 
           <button class="botao botao-primario" type="submit" disabled>Enviar cadastro</button>

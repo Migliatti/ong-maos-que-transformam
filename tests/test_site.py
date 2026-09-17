@@ -172,12 +172,15 @@ class SiteStructureTests(unittest.TestCase):
         parser = parse_page("html/projetos.html")
         classes = [attrs.get("class", "") for _, attrs in parser.attributes]
         roles = [attrs.get("role") for _, attrs in parser.attributes]
+        templates = [attrs for tag, attrs in parser.attributes if tag == "template"]
         css = (ROOT / "css" / "estilos.css").read_text(encoding="utf-8")
 
         self.assertTrue(any("badge" in value.split() for value in classes))
         self.assertTrue(any("alerta" in value.split() for value in classes))
+        self.assertEqual(sum("alerta" in value.split() for value in classes), 1)
         self.assertTrue(any("toast" in value.split() for value in classes))
-        self.assertIn("alert", roles)
+        self.assertTrue(any(attrs.get("id") == "modelo-alerta" for attrs in templates))
+        self.assertTrue(any(attrs.get("id") == "lista-alertas" for _, attrs in parser.attributes))
         self.assertIn("status", roles)
         self.assertIn(".toast:target", css)
 

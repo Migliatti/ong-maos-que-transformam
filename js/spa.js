@@ -1,4 +1,5 @@
 import { iniciarFormulario } from "./mascaras.js";
+import { renderizarAlertas } from "./templates.js";
 
 const paginas = new Set(["index.html", "projetos.html", "cadastro.html"]);
 const diretorioHtml = new URL("../html/", import.meta.url);
@@ -71,6 +72,7 @@ if (typeof document !== "undefined") {
       paginaAtual = url.pathname;
       atualizarMenu(url.pathname);
       iniciarFormulario();
+      renderizarAlertas(document);
       posicionarPagina(url, true);
     } catch {
       if (pedido === pedidoAtual) window.location.assign(url.href);
@@ -108,4 +110,6 @@ if (typeof document !== "undefined") {
       mostrarPagina(url, false);
     }
   });
+
+  document.addEventListener("DOMContentLoaded", () => renderizarAlertas(document));
 }

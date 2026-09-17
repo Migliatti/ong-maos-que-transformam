@@ -114,20 +114,14 @@
         <h2 id="titulo-feedback">Comunicação clara em cada ação</h2>
         <p class="introducao-feedback">Os componentes abaixo exemplificam mensagens reutilizáveis para orientar voluntários e doadores.</p>
 
-        <div class="grade-alertas">
-          <div class="alerta alerta-informacao" role="status">
-            <span class="alerta-icone" aria-hidden="true">i</span>
-            <div><strong>Informação</strong><p>As inscrições para a próxima ação encerram-se na sexta-feira.</p></div>
+        <div class="grade-alertas" id="lista-alertas"></div>
+        <template id="modelo-alerta">
+          <div class="alerta">
+            <span class="alerta-icone" aria-hidden="true"></span>
+            <div><strong></strong><p></p></div>
           </div>
-          <div class="alerta alerta-sucesso" role="status">
-            <span class="alerta-icone" aria-hidden="true">✓</span>
-            <div><strong>Cadastro confirmado</strong><p>Recebemos os seus dados e entraremos em contacto.</p></div>
-          </div>
-          <div class="alerta alerta-atencao" role="alert">
-            <span class="alerta-icone" aria-hidden="true">!</span>
-            <div><strong>Atenção</strong><p>Revise os campos obrigatórios antes de continuar.</p></div>
-          </div>
-        </div>
+        </template>
+        <noscript><p>Ative o JavaScript para visualizar os exemplos de alertas.</p></noscript>
 
         <a class="botao botao-primario" href="#notificacao">Exibir notificação</a>
       </div>

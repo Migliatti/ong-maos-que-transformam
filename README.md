@@ -21,6 +21,7 @@ As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Pr
 - Validações nativas com `required`, `pattern`, `maxlength` e tipos adequados.
 - Máscaras progressivas para CPF, telefone e CEP em JavaScript.
 - Navegação SPA progressiva: links internos trocam o conteúdo de `main#conteudo` sem recarregar o documento, com History API, Voltar/Avançar e acesso direto às páginas.
+- Alertas da página Projetos gerados por um `<template>` HTML e dados em JavaScript, inclusive após a navegação SPA.
 
 ## Estrutura de pastas
 
@@ -37,7 +38,8 @@ ong-maos-que-transformam/
 ├── js/
 │   ├── mascaras.js
 │   ├── navegacao.js
-│   └── spa.js
+│   ├── spa.js
+│   └── templates.js
 ├── imagens/
 │   ├── voluntarios.jpg
 │   ├── voluntarios.webp

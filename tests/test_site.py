@@ -57,6 +57,16 @@ class SiteStructureTests(unittest.TestCase):
                 links = {attrs.get("href") for tag, attrs in parser.attributes if tag == "a"}
                 self.assertTrue(expected.issubset(links))
 
+    def test_spa_module_is_loaded_on_every_page(self):
+        for filename in PAGES:
+            with self.subTest(filename=filename):
+                parser = parse_page(filename)
+                scripts = [attrs for tag, attrs in parser.attributes if tag == "script"]
+                self.assertTrue(any(
+                    script.get("src") == "../js/spa.js" and script.get("type") == "module"
+                    for script in scripts
+                ))
+
     def test_local_assets_resolve_from_each_html_page(self):
         for filename in PAGES:
             with self.subTest(filename=filename):

@@ -20,6 +20,7 @@ As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Pr
 - Dez controles de cadastro, respeitando o limite de no máximo dez campos.
 - Validações nativas com `required`, `pattern`, `maxlength` e tipos adequados.
 - Máscaras progressivas para CPF, telefone e CEP em JavaScript.
+- Navegação SPA progressiva: links internos trocam o conteúdo de `main#conteudo` sem recarregar o documento, com History API, Voltar/Avançar e acesso direto às páginas.
 
 ## Estrutura de pastas
 
@@ -35,7 +36,8 @@ ong-maos-que-transformam/
 │   └── estilos.css
 ├── js/
 │   ├── mascaras.js
-│   └── navegacao.js
+│   ├── navegacao.js
+│   └── spa.js
 ├── imagens/
 │   ├── voluntarios.jpg
 │   ├── voluntarios.webp
@@ -43,7 +45,8 @@ ong-maos-que-transformam/
 │   └── projeto-alimentos.webp
 ├── tests/
 │   ├── test_site.py
-│   └── mascaras.test.mjs
+│   ├── mascaras.test.mjs
+│   └── spa.test.mjs
 ├── requirements-dev.txt
 └── docs/
     └── validacao-w3c.txt
@@ -51,7 +54,7 @@ ong-maos-que-transformam/
 
 ## Como visualizar
 
-O site não exige bibliotecas no navegador. Use um servidor local para carregar o módulo JavaScript das máscaras:
+O site não exige bibliotecas no navegador. Use um servidor local para carregar os módulos JavaScript e permitir que a navegação SPA busque as outras páginas:
 
 ```bash
 python -m http.server 8000
@@ -67,13 +70,14 @@ Instale a dependência dos testes Python e execute as duas suítes:
 python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 node --test tests/mascaras.test.mjs
+node --test tests/spa.test.mjs
 ```
 
-O estado atual possui 13 testes Python e 6 testes JavaScript.
+O estado atual possui 14 testes Python e 8 testes JavaScript.
 
 ## Validação HTML
 
-As três páginas foram submetidas ao [Nu HTML Checker do W3C](https://validator.w3.org/nu/) e terminaram sem erros. O registro está em `docs/validacao-w3c.txt`.
+As páginas da etapa anterior foram submetidas ao [Nu HTML Checker do W3C](https://validator.w3.org/nu/) sem erros. O registro histórico está em `docs/validacao-w3c.txt`; a versão atual com o módulo SPA ainda deve ser revalidada antes da entrega.
 
 ## Observação sobre dados
 

@@ -37,7 +37,7 @@ function conectarMascara(id, formatador) {
   });
 }
 
-function iniciarFormulario() {
+export function iniciarFormulario() {
   conectarMascara("cpf", mascararCPF);
   conectarMascara("telefone", mascararTelefone);
   conectarMascara("cep", mascararCEP);

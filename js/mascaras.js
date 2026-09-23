@@ -66,25 +66,40 @@ function conectarMascara(id, formatador) {
   });
 }
 
-function atualizarRegraPersonalizada(campo) {
-  if (campo.id === "cpf") {
-    campo.setCustomValidity(campo.value && !validarCPF(campo.value)
-      ? "Digite um CPF válido."
-      : "");
-  }
-
-  if (campo.id === "nascimento") {
-    campo.setCustomValidity(campo.value && !dataNascimentoEValida(campo.value)
-      ? "A data de nascimento não pode estar no futuro."
-      : "");
-  }
+export function emailEValido(valor) {
+  // Exige texto antes do @, domínio e ao menos uma extensão (ex.: .org, .com.br).
+  return /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(valor);
 }
 
-function mensagemDeErro(campo) {
-  if (campo.validity.valueMissing) return "Preencha este campo.";
-  if (campo.validity.typeMismatch) return "Digite um e-mail válido.";
-  if (campo.validity.tooShort) return "Digite mais caracteres.";
-  if (campo.validity.patternMismatch) return "Use o formato indicado.";
+const mensagensDeFormato = {
+  cpf: "Digite os 11 números do CPF: 000.000.000-00.",
+  telefone: "Digite o telefone com DDD: (00) 00000-0000.",
+  cep: "Digite os 8 números do CEP: 00000-000.",
+  estado: "Digite a sigla do estado com duas letras, como SP.",
+};
+
+function atualizarRegraPersonalizada(campo) {
+  let erro = "";
+
+  if (campo.type === "text" && campo.value && !campo.value.trim()) {
+    erro = "O campo não pode conter apenas espaços.";
+  } else if (campo.id === "cpf" && campo.value.length === 14 && !validarCPF(campo.value)) {
+    erro = "Digite um CPF válido.";
+  } else if (campo.id === "nascimento" && campo.value && !dataNascimentoEValida(campo.value)) {
+    erro = "A data de nascimento não pode estar no futuro.";
+  } else if (campo.id === "email" && campo.value && !emailEValido(campo.value)) {
+    erro = "Digite um e-mail completo, como nome@exemplo.com.";
+  }
+
+  campo.setCustomValidity(erro);
+}
+
+export function mensagemDeErro(campo) {
+  const { validity } = campo;
+  if (validity.valueMissing) return "Preencha este campo.";
+  if (validity.patternMismatch) return mensagensDeFormato[campo.id] || "Use o formato indicado.";
+  if (validity.typeMismatch) return "Digite um e-mail completo, como nome@exemplo.com.";
+  if (validity.tooShort) return `Digite pelo menos ${campo.minLength} caracteres.`;
   return campo.validationMessage || "Verifique este campo.";
 }
 
@@ -144,9 +159,8 @@ export function iniciarFormulario() {
   // Habilita o botão apenas quando o envio demonstrativo está disponível.
   formulario?.querySelector("button[type=submit]")?.removeAttribute("disabled");
 
-  formulario?.addEventListener("invalid", (evento) => {
-    validarCampo(evento.target);
-  }, true);
+  // Com JavaScript ativo, o script assume os avisos; sem ele, a validação nativa continua valendo.
+  if (formulario) formulario.noValidate = true;
 
   formulario?.addEventListener("blur", (evento) => {
     if (evento.target.matches("input, select, textarea")) validarCampo(evento.target);
@@ -160,14 +174,25 @@ export function iniciarFormulario() {
 
   formulario?.addEventListener("submit", (evento) => {
     evento.preventDefault();
-    if (!formulario.checkValidity()) {
-      formulario.reportValidity();
+    const campos = Array.from(formulario.elements)
+      .filter((campo) => campo.matches?.("input, select, textarea"));
+    const invalidos = campos.filter((campo) => !validarCampo(campo));
+
+    if (invalidos.length > 0) {
+      if (mensagem) {
+        mensagem.classList.add("mensagem-formulario-erro");
+        mensagem.textContent = invalidos.length === 1
+          ? "Corrija o campo destacado para enviar o cadastro."
+          : `Corrija os ${invalidos.length} campos destacados para enviar o cadastro.`;
+      }
+      invalidos[0].focus();
       return;
     }
 
     formulario.reset();
     limparEstadoFormulario(formulario);
     if (mensagem) {
+      mensagem.classList.remove("mensagem-formulario-erro");
       mensagem.textContent = "Cadastro validado com sucesso! Nenhum dado foi armazenado.";
     }
     document.querySelector("#nome")?.focus();

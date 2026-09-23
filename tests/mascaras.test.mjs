@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 
 import {
   dataNascimentoEValida,
+  emailEValido,
   mascararCEP,
   mascararCPF,
   mascararTelefone,
+  mensagemDeErro,
   validarCPF,
 } from "../js/mascaras.js";
 
@@ -53,4 +55,20 @@ test("rejeita data de nascimento futura", () => {
   const hoje = new Date(2026, 8, 16);
   assert.equal(dataNascimentoEValida("2026-09-17", hoje), false);
   assert.equal(dataNascimentoEValida("2000-01-01", hoje), true);
+});
+
+test("exige e-mail com usuário, domínio e extensão", () => {
+  assert.equal(emailEValido("maria@ong.org.br"), true);
+  assert.equal(emailEValido("maria@ong"), false);
+  assert.equal(emailEValido("maria ong@site.com"), false);
+});
+
+test("usa mensagem específica para o formato de cada campo", () => {
+  const formatoInvalido = { patternMismatch: true };
+  assert.equal(mensagemDeErro({ id: "telefone", validity: formatoInvalido }),
+    "Digite o telefone com DDD: (00) 00000-0000.");
+  assert.equal(mensagemDeErro({ id: "cep", validity: formatoInvalido }),
+    "Digite os 8 números do CEP: 00000-000.");
+  assert.equal(mensagemDeErro({ id: "nome", validity: { valueMissing: true } }),
+    "Preencha este campo.");
 });

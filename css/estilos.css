@@ -900,6 +900,10 @@ select:user-invalid {
   font-weight: 800;
 }
 
+.mensagem-formulario-erro {
+  color: var(--vermelho-700);
+}
+
 .campo-invalido :is(input, select) {
   border-color: var(--vermelho-700);
   box-shadow: 0 0 0 3px var(--vermelho-700-18);

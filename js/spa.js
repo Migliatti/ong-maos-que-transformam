@@ -1,3 +1,4 @@
+import { renderizarGrafico } from "./grafico.js";
 import { iniciarFormulario } from "./mascaras.js";
 import { renderizarAlertas } from "./templates.js";
 
@@ -73,6 +74,7 @@ if (typeof document !== "undefined") {
       atualizarMenu(url.pathname);
       iniciarFormulario();
       renderizarAlertas(document);
+      renderizarGrafico(document);
       posicionarPagina(url, true);
     } catch {
       if (pedido === pedidoAtual) window.location.assign(url.href);
@@ -111,5 +113,8 @@ if (typeof document !== "undefined") {
     }
   });
 
-  document.addEventListener("DOMContentLoaded", () => renderizarAlertas(document));
+  document.addEventListener("DOMContentLoaded", () => {
+    renderizarAlertas(document);
+    renderizarGrafico(document);
+  });
 }

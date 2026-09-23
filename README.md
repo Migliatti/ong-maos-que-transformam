@@ -22,6 +22,7 @@ As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Pr
 - Máscaras progressivas para CPF, telefone e CEP em JavaScript.
 - Navegação SPA progressiva: links internos trocam o conteúdo de `main#conteudo` sem recarregar o documento, com History API, Voltar/Avançar e acesso direto às páginas.
 - Rascunho do cadastro salvo em `localStorage` (JSON, sem o CPF), restaurado ao reabrir a página e apagado após o envio com sucesso.
+- Gráfico de impacto na página Projetos com Chart.js 4.5.1, carregado da CDN jsDelivr com verificação de integridade (SRI); sem a CDN, a tabela com os mesmos dados continua disponível.
 - Alertas da página Projetos gerados por um `<template>` HTML e dados em JavaScript, inclusive após a navegação SPA.
 
 ## Estrutura de pastas
@@ -37,6 +38,7 @@ ong-maos-que-transformam/
 ├── css/
 │   └── estilos.css
 ├── js/
+│   ├── grafico.js
 │   ├── mascaras.js
 │   ├── navegacao.js
 │   ├── rascunho.js
@@ -49,6 +51,7 @@ ong-maos-que-transformam/
 │   └── projeto-alimentos.webp
 ├── tests/
 │   ├── test_site.py
+│   ├── grafico.test.mjs
 │   ├── mascaras.test.mjs
 │   ├── rascunho.test.mjs
 │   └── spa.test.mjs
@@ -59,7 +62,7 @@ ong-maos-que-transformam/
 
 ## Como visualizar
 
-O site não exige bibliotecas no navegador. Use um servidor local para carregar os módulos JavaScript e permitir que a navegação SPA busque as outras páginas:
+O site usa apenas uma biblioteca externa, o Chart.js, carregada da CDN somente na página Projetos. Use um servidor local para carregar os módulos JavaScript e permitir que a navegação SPA busque as outras páginas:
 
 ```bash
 python -m http.server 8000
@@ -77,9 +80,10 @@ python -m unittest discover -s tests -v
 node --test tests/mascaras.test.mjs
 node --test tests/spa.test.mjs
 node --test tests/rascunho.test.mjs
+node --test tests/grafico.test.mjs
 ```
 
-O estado atual possui 14 testes Python e 17 testes JavaScript.
+O estado atual possui 14 testes Python e 19 testes JavaScript.
 
 ## Validação HTML
 

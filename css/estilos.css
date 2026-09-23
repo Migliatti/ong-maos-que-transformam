@@ -926,6 +926,51 @@ select:user-invalid {
   font-weight: 700;
 }
 
+.grafico-impacto {
+  margin: var(--espaco-6) 0 0;
+  padding: var(--espaco-6);
+  background: var(--branco);
+  border-radius: 12px;
+  box-shadow: var(--sombra-cartao);
+}
+
+/* O canvas só aparece depois que o Chart.js carrega; antes disso, a tabela basta. */
+.grafico-area {
+  display: none;
+  position: relative;
+  height: 320px;
+}
+
+.grafico-carregado .grafico-area {
+  display: block;
+}
+
+.grafico-impacto figcaption {
+  margin: var(--espaco-4) 0;
+  color: var(--cinza-700);
+  font-size: var(--texto-sm);
+}
+
+.tabela-rolagem {
+  overflow-x: auto;
+}
+
+.grafico-impacto table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.grafico-impacto :is(th, td) {
+  padding: var(--espaco-2) var(--espaco-3);
+  border-bottom: 1px solid var(--cinza-200);
+  text-align: left;
+}
+
+.grafico-impacto :is(td, thead th:not(:first-child)) {
+  text-align: right;
+}
+
 /* 1200px: notebooks e desktops com area util reduzida. */
 @media (max-width: 1200px) {
   .container {

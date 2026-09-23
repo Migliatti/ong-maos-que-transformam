@@ -1,3 +1,11 @@
+import {
+  criarRascunho,
+  lerRascunho,
+  limparRascunho,
+  restaurarRascunho,
+  salvarRascunho,
+} from "./rascunho.js";
+
 function somenteDigitos(valor, limite) {
   return String(valor).replace(/\D/g, "").slice(0, limite);
 }
@@ -162,6 +170,15 @@ export function iniciarFormulario() {
   // Com JavaScript ativo, o script assume os avisos; sem ele, a validação nativa continua valendo.
   if (formulario) formulario.noValidate = true;
 
+  const rascunho = formulario && lerRascunho();
+  if (rascunho && restaurarRascunho(formulario, rascunho) > 0 && mensagem) {
+    const salvoEm = new Date(rascunho.salvoEm).toLocaleString("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short",
+    });
+    mensagem.textContent = `Rascunho de ${salvoEm} restaurado. Revise os dados e informe o CPF.`;
+  }
+
   formulario?.addEventListener("blur", (evento) => {
     if (evento.target.matches("input, select, textarea")) validarCampo(evento.target);
   }, true);
@@ -170,6 +187,7 @@ export function iniciarFormulario() {
     if (evento.target.matches("input, select, textarea") && evento.target.dataset.verificado) {
       validarCampo(evento.target);
     }
+    salvarRascunho(criarRascunho(new FormData(formulario)));
   });
 
   formulario?.addEventListener("submit", (evento) => {
@@ -191,6 +209,7 @@ export function iniciarFormulario() {
 
     formulario.reset();
     limparEstadoFormulario(formulario);
+    limparRascunho();
     if (mensagem) {
       mensagem.classList.remove("mensagem-formulario-erro");
       mensagem.textContent = "Cadastro validado com sucesso! Nenhum dado foi armazenado.";

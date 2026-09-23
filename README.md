@@ -21,6 +21,7 @@ As orientações de trabalho para o Codex estão em [AGENTS.md](AGENTS.md). O Pr
 - Validações nativas com `required`, `pattern`, `maxlength` e tipos adequados.
 - Máscaras progressivas para CPF, telefone e CEP em JavaScript.
 - Navegação SPA progressiva: links internos trocam o conteúdo de `main#conteudo` sem recarregar o documento, com History API, Voltar/Avançar e acesso direto às páginas.
+- Rascunho do cadastro salvo em `localStorage` (JSON, sem o CPF), restaurado ao reabrir a página e apagado após o envio com sucesso.
 - Alertas da página Projetos gerados por um `<template>` HTML e dados em JavaScript, inclusive após a navegação SPA.
 
 ## Estrutura de pastas
@@ -38,6 +39,7 @@ ong-maos-que-transformam/
 ├── js/
 │   ├── mascaras.js
 │   ├── navegacao.js
+│   ├── rascunho.js
 │   ├── spa.js
 │   └── templates.js
 ├── imagens/
@@ -48,6 +50,7 @@ ong-maos-que-transformam/
 ├── tests/
 │   ├── test_site.py
 │   ├── mascaras.test.mjs
+│   ├── rascunho.test.mjs
 │   └── spa.test.mjs
 ├── requirements-dev.txt
 └── docs/
@@ -73,9 +76,10 @@ python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 node --test tests/mascaras.test.mjs
 node --test tests/spa.test.mjs
+node --test tests/rascunho.test.mjs
 ```
 
-O estado atual possui 14 testes Python e 8 testes JavaScript.
+O estado atual possui 14 testes Python e 17 testes JavaScript.
 
 ## Validação HTML
 

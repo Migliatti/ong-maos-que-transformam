@@ -81,8 +81,9 @@ h3 {
 }
 
 :focus-visible {
-  outline: 4px solid #ffbf47;
-  outline-offset: 4px;
+  outline: 3px solid var(--azul-950);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #ffbf47;
 }
 
 .container {
@@ -513,7 +514,7 @@ select {
   padding: 0.7rem 0.85rem;
   color: var(--azul-950);
   background: var(--branco);
-  border: 1px solid #aebdc2;
+  border: 2px solid #6b7c84;
   border-radius: 9px;
   font: inherit;
 }
@@ -524,8 +525,10 @@ select:hover {
 }
 
 input:user-invalid,
-select:user-invalid {
+select:user-invalid,
+[aria-invalid="true"] {
   border-color: #a23838;
+  background-image: linear-gradient(to right, #a23838 6px, transparent 6px);
 }
 
 .opcoes {
@@ -656,5 +659,19 @@ select:user-invalid {
 
 /* Mantém os textos pequenos legíveis sobre fundos claros. */
 .secao .chapeu, .cartao:not(.projeto-textual) .etiqueta { color: var(--verde-700); }
-.chamada .chapeu { color: #b8ead7; }
+.chamada .chapeu { color: #e3f7ee; }
 button:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.dica {
+  margin: 0.35rem 0 0;
+  color: var(--cinza-700);
+  font-size: 0.9rem;
+}
+
+.mensagem-formulario[data-tipo="erro"] {
+  padding: 0.85rem 1rem;
+  color: #7a1f1f;
+  background: #fbeaea;
+  border-left: 6px solid #a23838;
+  border-radius: 6px;
+}

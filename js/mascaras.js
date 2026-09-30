@@ -50,18 +50,32 @@ function iniciarFormulario() {
   const formulario = document.querySelector("#cadastro-form");
   const mensagem = document.querySelector("#mensagem-formulario");
 
+  // Com JavaScript ativo, a validação é feita no evento submit para exibir o resumo de erros.
+  if (formulario) formulario.noValidate = true;
+
   // Habilita o botão apenas quando o envio demonstrativo está disponível.
   formulario?.querySelector("button[type=submit]")?.removeAttribute("disabled");
 
   formulario?.addEventListener("submit", (evento) => {
     evento.preventDefault();
-    if (!formulario.checkValidity()) {
+    const invalidos = [...formulario.elements].filter((campo) => campo.willValidate && !campo.checkValidity());
+    formulario.querySelectorAll("[aria-invalid]").forEach((campo) => campo.removeAttribute("aria-invalid"));
+
+    if (invalidos.length > 0) {
+      invalidos.forEach((campo) => campo.setAttribute("aria-invalid", "true"));
+      if (mensagem) {
+        mensagem.dataset.tipo = "erro";
+        const nomes = invalidos.map((campo) => campo.labels?.[0]?.textContent.replace(" *", "") ?? campo.name);
+        mensagem.textContent = `Corrija ${invalidos.length} campo(s): ${nomes.join(", ")}.`;
+      }
+      invalidos[0].focus();
       formulario.reportValidity();
       return;
     }
 
     formulario.reset();
     if (mensagem) {
+      delete mensagem.dataset.tipo;
       mensagem.textContent = "Cadastro validado com sucesso! Nenhum dado foi armazenado.";
     }
     document.querySelector("#nome")?.focus();

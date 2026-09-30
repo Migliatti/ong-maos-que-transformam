@@ -50,6 +50,9 @@ function iniciarFormulario() {
   const formulario = document.querySelector("#cadastro-form");
   const mensagem = document.querySelector("#mensagem-formulario");
 
+  // Com JavaScript ativo, a validação é feita no evento submit para exibir o resumo de erros.
+  if (formulario) formulario.noValidate = true;
+
   // Habilita o botão apenas quando o envio demonstrativo está disponível.
   formulario?.querySelector("button[type=submit]")?.removeAttribute("disabled");
 

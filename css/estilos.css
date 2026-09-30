@@ -675,3 +675,44 @@ button:disabled { opacity: 0.65; cursor: not-allowed; }
   border-left: 6px solid #a23838;
   border-radius: 6px;
 }
+
+/* Etiqueta sobre fundo azul escuro: contraste mínimo de 4,5:1. */
+.projeto-textual .etiqueta { color: #7fd8b5; }
+
+/* Modo escuro: segue a preferência do sistema. */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; }
+  body { color: #e8f1f4; background: #0b1a24; }
+  main a:not(.botao):not(.marca) { color: #7fd8b5; }
+  .botao-primario, .botao-claro { color: var(--azul-950); }
+  .secao-clara { background: #10222e; }
+  .grade-institucional p { color: #c5d5db; }
+  .cartao, .nota { background: #162b38; border-color: #2a4352; box-shadow: none; }
+  .contato { background: #12302a; }
+  .contato address p { border-bottom-color: rgba(127, 216, 181, 0.35); }
+  form { background: #10222e; }
+  fieldset { border-bottom-color: #2a4352; }
+  legend, label, .rotulo-grupo { color: #e8f1f4; }
+  input, select { color: #e8f1f4; background: #0b1a24; border-color: #8ea5ae; }
+  input:hover, select:hover { border-color: #ffffff; }
+  .secao .chapeu, .cartao:not(.projeto-textual) .etiqueta { color: #7fd8b5; }
+  .dica { color: #c5d5db; }
+  .mensagem-formulario { color: #7fd8b5; }
+  .mensagem-formulario[data-tipo="erro"] { color: #ffd7d7; background: #3a1a1a; }
+  input:user-invalid, select:user-invalid, [aria-invalid="true"] { border-color: #ff9a9a; background-image: linear-gradient(to right, #ff9a9a 6px, transparent 6px); }
+  :focus-visible { outline-color: #ffffff; }
+}
+
+/* Alto contraste: segue a preferência do sistema. */
+@media (prefers-contrast: more) {
+  body { color: #000000; background: #ffffff; }
+  a, .secao .chapeu, .cartao:not(.projeto-textual) .etiqueta { color: #004a38; }
+  .secao-clara, .contato, form { background: #ffffff; }
+  .cartao, .nota, input, select, fieldset { border-color: #000000; }
+  input, select { border-width: 3px; color: #000000; background: #ffffff; }
+  .grade-institucional p, .dica, .titulo-pagina-conteudo > p { color: #000000; }
+  legend, label { color: #000000; }
+  .titulo-pagina-conteudo > p, .hero-texto .destaque { color: #ffffff; }
+  .botao-primario { color: #000000; background: #7fe3bd; border-color: #000000; }
+  .botao-secundario { border-color: #ffffff; }
+}

@@ -31,3 +31,26 @@ Ordem de tabulação segue a ordem visual: link de salto, menu, conteúdo, formu
 ## Limitações
 
 Auditoria manual e por cálculo de contraste; não foi feito teste com leitor de tela real.
+
+## Modo escuro e alto contraste
+
+Implementados em `css/estilos.css` com media queries que seguem a preferência do sistema, sem JavaScript:
+
+- `@media (prefers-color-scheme: dark)`: fundo `#0b1a24`, cartões `#162b38`, texto `#e8f1f4`, links `#7fd8b5`.
+- `@media (prefers-contrast: more)`: texto preto sobre branco, bordas pretas de 3 px, links `#004a38`.
+
+Razões de contraste (calculadas pela fórmula de luminância relativa da WCAG 2.1):
+
+| Elemento | Texto / fundo | Razão |
+| --- | --- | --- |
+| Corpo, tema claro | `#0b2638` / `#ffffff` | 15,57:1 |
+| Links e rótulos, tema claro | `#23705c` / `#ffffff` | 5,93:1 |
+| Corpo, tema escuro | `#e8f1f4` / `#0b1a24` | 15,43:1 |
+| Links e rótulos, tema escuro | `#7fd8b5` / `#0b1a24` | 10,44:1 |
+| Etiqueta sobre azul-900 | `#7fd8b5` / `#12364a` | 7,50:1 |
+| Rótulo da seção verde | `#e3f7ee` / `#23705c` | 5,31:1 |
+| Borda dos campos, tema escuro | `#8ea5ae` / `#0b1a24` | 6,86:1 |
+| Alto contraste, texto | `#000000` / `#ffffff` | 21,00:1 |
+| Alto contraste, links | `#004a38` / `#ffffff` | 10,31:1 |
+
+Também corrigida a etiqueta `.projeto-textual .etiqueta` (antes 4,11:1, agora 7,50:1). Ferramenta: script de cálculo em Python com a fórmula da WCAG 2.1.

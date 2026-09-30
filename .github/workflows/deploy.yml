@@ -2,7 +2,7 @@ name: Deploy no GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [projeto-pratico-4]
   workflow_dispatch:
 
 permissions:

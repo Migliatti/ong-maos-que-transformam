@@ -112,7 +112,7 @@ Gera `dist/` com HTML, CSS e JS minificados e imagens redimensionadas (máx. 120
 | `release/*` | Preparação de versão (changelog, ajustes finais) |
 | `hotfix/*` | Correção urgente a partir de `main` |
 
-Commits seguem [Conventional Commits](https://www.conventionalcommits.org/pt-br/): `feat:`, `fix:`, `docs:`, `build:`, `test:`. Mudanças chegam à `main` por *pull request* revisado. Histórico de versões em `CHANGELOG.md`.
+Commits seguem [Conventional Commits](https://www.conventionalcommits.org/pt-br/): `feat:`, `fix:`, `docs:`, `build:`, `test:`. Cada experiência prática vive em sua própria branch (`projeto-pratico-N`). Histórico de versões em `CHANGELOG.md`.
 
 ## Acessibilidade
 
@@ -120,7 +120,7 @@ O site segue a WCAG 2.1 nível AA: contraste mínimo, foco visível, link de sal
 
 ## Deploy
 
-Publicação automática no GitHub Pages a cada push na `main` (`.github/workflows/deploy.yml`): testes, build e publicação de `dist/`. Endereço: https://migliatti.github.io/ong-maos-que-transformam/
+Publicação automática no GitHub Pages a cada push na branch `projeto-pratico-4` (`.github/workflows/deploy.yml`): testes, build e publicação de `dist/`. Endereço: https://migliatti.github.io/ong-maos-que-transformam/
 
 ## Manutenção
 

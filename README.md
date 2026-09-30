@@ -100,7 +100,7 @@ python3 -m http.server 8000        # desenvolvimento em http://localhost:8000
 python3 scripts/build.py
 ```
 
-Gera `dist/` com HTML, CSS e JS minificados e imagens redimensionadas (máx. 1200 px) e recomprimidas. Economia medida: 846 KB para 436 KB (48,5%); relatório em `docs/relatorio-otimizacao.txt`.
+Gera `dist/` com HTML, CSS e JS minificados e imagens redimensionadas (máx. 1200 px) e recomprimidas. Economia medida: 848 KB para 438 KB (48,4%); relatório em `docs/relatorio-otimizacao.txt`.
 
 ## Fluxo de versionamento (GitFlow)
 
